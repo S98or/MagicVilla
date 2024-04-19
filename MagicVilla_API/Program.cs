@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(option => 
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
- });
+ });// inyeccion de dependencias 
 
 var app = builder.Build();
 

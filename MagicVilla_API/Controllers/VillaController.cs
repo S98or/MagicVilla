@@ -42,6 +42,16 @@ namespace MagicVilla_API.Controllers
             return Variable;
         }
 
+        [HttpPost(Name = "postVillas")]
+
+        public async Task<ActionResult<Villa>> Post(Villa villas)
+        {
+            _context.Add(villas);
+            await _context.SaveChangesAsync();
+
+            return new CreatedAtRouteResult("Getvillas", new { id = villas.Id }, villas);
+        }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVilla(int id, Villa PutVillas)
@@ -75,15 +85,7 @@ namespace MagicVilla_API.Controllers
 
 
 
-        [HttpPost(Name = "postVillas")]
-
-        public async Task<ActionResult<Villa>> Post(Villa villas)
-        {
-            _context.Add(villas);
-            await _context.SaveChangesAsync();
-
-            return new CreatedAtRouteResult("Getvillas", new { id = villas.Id }, villas);
-        }
+        
 
         [HttpDelete("{id}")]
 
