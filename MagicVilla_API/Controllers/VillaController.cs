@@ -43,6 +43,38 @@ namespace MagicVilla_API.Controllers
         }
 
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutVilla(int id, Villa PutVillas)
+        {
+            if (id != PutVillas.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(PutVillas).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!VillaItemExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+
+
+
         [HttpPost(Name = "postVillas")]
 
         public async Task<ActionResult<Villa>> Post(Villa villas)
@@ -55,20 +87,21 @@ namespace MagicVilla_API.Controllers
 
         [HttpDelete("{id}")]
 
-        public async Task<ActionResult<Villa>> DeleteProducto(int id)
+        public async Task<ActionResult<Villa>> DeleteVilla(int id)
         {
-            var ProductoDel = await _context.Villas.FindAsync(id);
-            if (ProductoDel == null)
+            var VillaDel = await _context.Villas.FindAsync(id);
+            if (VillaDel == null)
             {
                 return NotFound();
             }
 
-            _context.Villas.Remove(ProductoDel);
+            _context.Villas.Remove(VillaDel);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
-        private bool ProductItemExists(long id)
+
+        private bool VillaItemExists(long id)
         {
             return _context.Villas.Any(e => e.Id == id);
         }
@@ -76,5 +109,5 @@ namespace MagicVilla_API.Controllers
 
 
 
-    }
+    
 }

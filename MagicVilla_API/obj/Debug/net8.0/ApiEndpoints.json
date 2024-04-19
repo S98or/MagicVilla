@@ -70,5 +70,52 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "MagicVilla_API.Controllers.VillaController",
+    "Method": "PutVilla",
+    "RelativePath": "api/Villa/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "PutVillas",
+        "Type": "MagicVilla_API.Models.Villa",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MagicVilla_API.Controllers.VillaController",
+    "Method": "DeleteVilla",
+    "RelativePath": "api/Villa/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MagicVilla_API.Models.Villa",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
